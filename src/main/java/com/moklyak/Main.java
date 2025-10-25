@@ -1,6 +1,8 @@
 package com.moklyak;
 
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -62,5 +64,25 @@ public class Main {
                 .collect(Collectors.toMap(Map.Entry::getKey, AbstractMap.SimpleEntry::getValue));
 
         System.out.println(result);
+
+        //third task
+        Integer n = 10;
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        FactorialTask factorialTask = new FactorialTask(n);
+        Integer fjpRes = forkJoinPool.invoke(factorialTask);
+        System.out.println("Факториал " + n + "! = " + fjpRes);
+
+        n = 9;
+        forkJoinPool = new ForkJoinPool();
+        factorialTask = new FactorialTask(n);
+        fjpRes = forkJoinPool.invoke(factorialTask);
+        System.out.println("Факториал " + n + "! = " + fjpRes);
+
+        n = 11;
+        forkJoinPool = new ForkJoinPool();
+        factorialTask = new FactorialTask(n);
+        fjpRes = forkJoinPool.invoke(factorialTask);
+        System.out.println("Факториал " + n + "! = " + fjpRes);
+
     }
 }
